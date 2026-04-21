@@ -1,0 +1,1 @@
+import{t as e}from"./main-BAtk6QQ6.js";document.addEventListener(`DOMContentLoaded`,e);

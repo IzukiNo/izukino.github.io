@@ -1,1 +1,0 @@
-import{t as e}from"./main-CvmpzAMI.js";function t(){let e=window.location.hash;if([`#code`,`#edit`].includes(e)){let t=document.querySelector(e);if(!t)return;setTimeout(()=>{let e=t.getBoundingClientRect().top+window.pageYOffset-96;window.scrollTo({top:e,behavior:`smooth`})},150)}}function n(){e(),t()}document.addEventListener(`DOMContentLoaded`,n);
