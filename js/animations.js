@@ -7,33 +7,11 @@ import { animate, inView, hover, stagger } from 'https://cdn.jsdelivr.net/npm/mo
 
 // ── Shared transition config ─────────────────────────────────
 const EASE_OUT = [0.22, 1, 0.36, 1];     // cubic-bezier spring feel
-const DUR_MED = 0.35;
-const DUR_SLOW = 0.55;
+const DUR_MED = 0.2;
+const DUR_SLOW = 0.3;
 
 // ============================================================
-// 1. HERO REVEAL — staggered entrance on load
-// ============================================================
-function initHeroReveal() {
-    const heroItems = document.querySelectorAll('.reveal');
-    if (!heroItems.length) return;
-
-    // Pre-set initial state
-    animate(heroItems, { opacity: 0, y: 20 }, { duration: 0 });
-
-    // Stagger reveal after a brief paint settle
-    animate(
-        heroItems,
-        { opacity: 1, y: 0 },
-        {
-            duration: DUR_SLOW,
-            easing: EASE_OUT,
-            delay: stagger(0.1, { start: 0.05 })
-        }
-    );
-}
-
-// ============================================================
-// 2. SCROLL REVEAL — cards + section headers
+// 1. SCROLL REVEAL — cards + section headers
 // ============================================================
 function initScrollReveal() {
     // Section headers
@@ -71,7 +49,7 @@ function initScrollReveal() {
 function initCardHover() {
     document.querySelectorAll('.project-card, .video-card').forEach(card => {
         hover(card, () => {
-            animate(card, { y: -6, scale: 1.015 }, {
+            animate(card, { y: -4, scale: 1.02 }, {
                 duration: DUR_MED,
                 easing: EASE_OUT
             });
@@ -94,19 +72,19 @@ function initButtonHover() {
     // Primary buttons — subtle lift
     document.querySelectorAll('.btn-primary, .nav-cta, .project-link').forEach(btn => {
         hover(btn, () => {
-            animate(btn, { scale: 1.03 }, { duration: DUR_MED, easing: EASE_OUT });
-            return () => animate(btn, { scale: 1 }, { duration: DUR_MED, easing: EASE_OUT });
+            animate(btn, { y: -2, scale: 1.02 }, { duration: DUR_MED, easing: EASE_OUT });
+            return () => animate(btn, { y: 0, scale: 1 }, { duration: DUR_MED, easing: EASE_OUT });
         });
 
         // Tap — press down
         btn.addEventListener('pointerdown', () => {
-            animate(btn, { scale: 0.96 }, { duration: 0.12, easing: EASE_OUT });
+            animate(btn, { y: 0, scale: 0.97 }, { duration: 0.12, easing: EASE_OUT });
         });
         btn.addEventListener('pointerup', () => {
             animate(btn, { scale: 1 }, { duration: DUR_MED, easing: EASE_OUT });
         });
         btn.addEventListener('pointerleave', () => {
-            animate(btn, { scale: 1 }, { duration: DUR_MED, easing: EASE_OUT });
+            animate(btn, { y: 0, scale: 1 }, { duration: DUR_MED, easing: EASE_OUT });
         });
     });
 
@@ -162,20 +140,56 @@ function initToggleAnimation() {
     if (!btn) return;
 
     btn.addEventListener('click', () => {
-        animate(btn, { rotate: [0, 180], scale: [1, 0.88, 1] }, {
+        animate(btn, { scale: [1, 0.85, 1], rotate: [0, 15, -5, 0] }, {
             duration: 0.4,
             easing: EASE_OUT
         });
     });
 }
 
+// ============================================================
+// 8. PAGE TRANSITIONS — smooth fade-out before navigation
+// ============================================================
+function initPageTransitions() {
+    const pageWrapper = document.querySelector('.page-transition');
+    if (!pageWrapper) return;
+
+    // Trigger fade in on load
+    requestAnimationFrame(() => {
+        pageWrapper.classList.add('fade-in');
+    });
+
+    // Handle link clicks
+    document.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            const target = link.getAttribute('target');
+
+            // Bypass same-page anchors, external links, mailto/tel, or modifier keys
+            if (!href || href.startsWith('#') || target === '_blank') return;
+            if (href.startsWith('mailto') || href.startsWith('tel')) return;
+            if (e.ctrlKey || e.metaKey || e.shiftKey) return;
+
+            // Apply fade out class mapped in style.css
+            e.preventDefault();
+            pageWrapper.classList.remove('fade-in');
+            pageWrapper.classList.add('fade-out');
+
+            // Wait ~300ms for transition before navigating
+            setTimeout(() => {
+                window.location.href = href;
+            }, 300);
+        });
+    });
+}
+
 // ── Init all ─────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-    initHeroReveal();
     initScrollReveal();
     initCardHover();
     initButtonHover();
     initAvatarHover();
     initSocialHover();
     initToggleAnimation();
+    initPageTransitions();
 });

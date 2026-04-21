@@ -155,8 +155,13 @@ document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     updateCopyright();
     initIslandScroll();
-    // Particle init is triggered inside initTheme → applyTheme
+    // Particle init is triggered inside initTheme -> applyTheme
     initParticles();
+
+    // Trigger page load reveal
+    requestAnimationFrame(() => {
+        document.body.classList.add('loaded');
+    });
 });
 
 // Safety net: init particles after window load if defer was slow
