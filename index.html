@@ -1,41 +1,41 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>IzukiNo</title>
+    <title>Portfolio - IzukiNo</title>
     <meta name="description"
-        content="IzukiNo là một lập trình viên và editor người Việt Nam, nổi bật với hệ thống Minecraft PvP Tierlist và các dự án web sáng tạo.">
+        content="IzukiNo là một lập trình viên và editor người Việt Nam, nổi bật với hệ thống Minecraft PvP Tierlist mang tên VNList và các dự án web sáng tạo.">
     <meta name="keywords" content="IzukiNo, Minecraft PvP, VNList, Developer, Editor, Portfolio">
     <meta name="author" content="IzukiNo">
 
-    <meta property="og:title" content="IzukiNo, Developer & Editor">
+    <meta property="og:title" content="IzukiNo — Developer & Editor">
     <meta property="og:description" content="IzukiNo, lập trình viên và là Editor người Việt Nam.">
-    <meta property="og:image" content="https://izukino.tech/assets/logo.png">
-    <meta property="og:url" content="https://izukino.tech">
+    <meta property="og:image" content="https://izukino.github.io/assets/logo.png">
+    <meta property="og:url" content="https://izukino.github.io">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="vi_VN">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
 
-    <link rel="canonical" href="https://izukino.tech/" />
+    <link rel="canonical" href="https://izukino.github.io/" />
     <link rel="icon" href="./assets/logo.png" sizes="32x32" type="image/png">
     <link rel="apple-touch-icon" href="./assets/logo.png">
-    <meta name="theme-color" content="#000000">
+    <meta name="theme-color" content="#0d0d0d">
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "IzukiNo",
-      "url": "https://izukino.tech",
-      "image": "https://izukino.tech/assets/logo.png",
+      "url": "https://izukino.github.io",
+      "image": "https://izukino.github.io/assets/logo.png",
       "sameAs": [
         "https://www.facebook.com/IzukiNoVN",
         "https://github.com/IzukiNo",
-        "https://www.youtube.com/@IzukiNo"
+        "https://www.youtube.com/@izukinoo"
       ],
       "jobTitle": "Developer, Editor",
       "description": "IzukiNo là lập trình viên và editor người Việt Nam."
@@ -46,51 +46,99 @@
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "IzukiNo Portfolio",
-      "url": "https://izukino.tech"
+      "url": "https://izukino.github.io"
     }
     </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://unpkg.com/scrollreveal"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <!-- Anti-flicker: apply stored theme before first paint -->
+    <script>
+        (function () {
+            var stored = localStorage.getItem('izukino-theme');
+            var theme = stored || 'dark';
+            document.documentElement.setAttribute('data-theme', theme);
+        }());
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    </noscript>
+    <link rel="stylesheet" href="./css/style.css">
+
     <script defer src="https://cloud.umami.is/script.js"
         data-website-id="dafae99c-b43d-41f1-ba96-1f6722000aa8"></script>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="icon" href="./assets/logo.png" type="image/png">
 </head>
 
 <body>
     <header>
-        <a href="/" class="logo">IzukiNo</a>
-        <nav>
-            <a href="/" class="active">Home</a>
-            <a href="/project">Project</a>
-        </nav>
-    </header>
-    <section class="home">
-        <div class="home-content">
-            <h1>I'm <span>IzukiNo!</span></h1>
-            <p>An editor also a coder.</p>
-            <div class="social-icon">
-                <a href="https://www.facebook.com/izukinooo" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-                <a href="https://www.youtube.com/@IzukiNo" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://github.com/IzukiNo" target="_blank"><i class="fa-brands fa-github"></i></a>
+        <div class="nav-island">
+            <a href="/" class="logo">IzukiNo</a>
+            <nav>
+                <a href="/" class="active">Home</a>
+                <a href="/project.html">Projects</a>
+            </nav>
+            <div class="nav-right">
+                <button class="theme-toggle" aria-label="Switch to light mode" type="button">
+                    <i class="fa-solid fa-sun icon-sun" aria-hidden="true"></i>
+                    <i class="fa-solid fa-moon icon-moon" aria-hidden="true"></i>
+                </button>
+                <a href="/project.html" class="nav-cta">View Work</a>
             </div>
         </div>
-        <div class="home-img">
-            <img src="https://cdn.jsdelivr.net/gh/IzukiNo/cdn/portfolio/logo/logo2.png" alt="IzukiNo's Logo">
-        </div>
-    </section>
-    <div id="particle-background"></div>
+    </header>
 
-    <script src="Particles.js"></script>
-    <script src="index.js"></script>
+    <main>
+        <section class="hero">
+            <div class="hero-inner">
+                <div class="hero-content">
+                    <p class="hero-eyebrow reveal">Developer & Editor</p>
+                    <h1 class="reveal delay-1">I'm <mark>IzukiNo</mark>.</h1>
+                    <p class="hero-subtitle reveal delay-2">
+                        Building web systems and editing Minecraft content from Vietnam.
+                        Founder of <strong>VNList</strong> — a full-stack PvP ranking platform.
+                    </p>
+                    <div class="hero-cta reveal delay-3">
+                        <a href="/project.html" class="btn-primary">View Projects</a>
+                        <div class="social-links">
+                            <a href="https://www.facebook.com/izukinooo" target="_blank" rel="noopener"
+                                aria-label="Facebook Profile">
+                                <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://www.youtube.com/@izukinoo" target="_blank" rel="noopener"
+                                aria-label="YouTube Channel">
+                                <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://github.com/IzukiNo" target="_blank" rel="noopener"
+                                aria-label="GitHub Profile">
+                                <i class="fa-brands fa-github" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-avatar reveal delay-4">
+                    <img src="https://cdn.jsdelivr.net/gh/IzukiNo/cdn/portfolio/logo/logo2.png"
+                        alt="IzukiNo's profile picture" width="240" height="240" loading="eager">
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer>
-        <div id="copyright">
-            &copy; 2025 IzukiNo - All Rights Reserved.
+        <div class="footer-inner">
+            <div id="copyright"></div>
+            <div class="footer-links">
+                <a href="/project.html">Projects</a>
+                <a href="https://github.com/IzukiNo" target="_blank" rel="noopener">GitHub</a>
+            </div>
         </div>
     </footer>
+
+    <div id="particle-background"></div>
+
+    <script defer src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script defer src="./js/main.js"></script>
+    <script type="module" src="./js/animations.js"></script>
 </body>
 
 </html>

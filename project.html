@@ -1,99 +1,316 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" data-theme="dark">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>IzukiNo</title>
+    <title>Projects — IzukiNo</title>
     <meta name="description"
-        content="Các dự án coding và video editing của IzukiNo, bao gồm countdown, to-do list, xo game và nhiều Minecraft montage nổi bật." />
+        content="Các dự án coding và video editing của IzukiNo, bao gồm VNList, Home To School, Group Tab Opener và nhiều Minecraft montage nổi bật." />
     <meta name="keywords" content="IzukiNo, Project, Code, Video Edit, Minecraft, VNList, Portfolio" />
     <meta name="author" content="IzukiNo" />
 
-    <meta property="og:title" content="Project Showcase – IzukiNo" />
+    <meta property="og:title" content="Projects — IzukiNo" />
     <meta property="og:description"
         content="Xem các project và video của IzukiNo – developer & editor Minecraft từ Việt Nam." />
-    <meta property="og:image" content="https://izukino.tech/assets/logo.png" />
-    <meta property="og:url" content="https://izukino.tech/project" />
+    <meta property="og:image" content="https://izukino.github.io/assets/logo.png" />
+    <meta property="og:url" content="https://izukino.github.io/project.html" />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
 
     <link rel="icon" href="./assets/logo.png" type="image/png" />
     <link rel="apple-touch-icon" href="./assets/logo.png" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#0d0d0d" />
 
-    <link rel="canonical" href="https://izukino.tech/project" />
+    <link rel="canonical" href="https://izukino.github.io/project.html" />
     <meta property="og:locale" content="vi_VN" />
     <meta name="robots" content="index, follow" />
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "IzukiNo Portfolio",
-      "url": "https://izukino.tech"
+      "url": "https://izukino.github.io"
     }
     </script>
-
     <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "IzukiNo",
-    "url": "https://izukino.tech",
-    "image": "https://izukino.tech/assets/logo.png",
-    "sameAs": [
-      "https://www.facebook.com/IzukiNoVN",
-      "https://github.com/IzukiNo",
-      "https://www.youtube.com/@IzukiNo"
-    ],
-    "jobTitle": "Developer, Editor",
-    "description": "IzukiNo là lập trình viên và Editor người Việt, người sáng lập hệ thống Minecraft PvP Tierlist – VNList."
-  }
-  </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://unpkg.com/scrollreveal"></script>
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "IzukiNo",
+      "url": "https://izukino.github.io",
+      "image": "https://izukino.github.io/assets/logo.png",
+      "sameAs": [
+        "https://www.facebook.com/IzukiNoVN",
+        "https://github.com/IzukiNo",
+        "https://www.youtube.com/@izukinoo"
+      ],
+      "jobTitle": "Developer, Editor",
+      "description": "IzukiNo là lập trình viên và Editor người Việt, người sáng lập hệ thống Minecraft PvP Tierlist – VNList."
+    }
+    </script>
+    <script>
+        (function () {
+            var stored = localStorage.getItem('izukino-theme');
+            var theme = stored || 'dark';
+            document.documentElement.setAttribute('data-theme', theme);
+        }());
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        media="print" onload="this.media='all'" />
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    </noscript>
+    <link rel="stylesheet" href="./css/style.css" />
+
     <script defer src="https://cloud.umami.is/script.js"
         data-website-id="dafae99c-b43d-41f1-ba96-1f6722000aa8"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
 
 <body>
     <header>
-        <div>
+        <div class="nav-island">
             <a href="/" class="logo">IzukiNo</a>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/project.html" class="active">Projects</a>
+            </nav>
+            <div class="nav-right">
+                <button class="theme-toggle" aria-label="Switch to light mode" type="button">
+                    <i class="fa-solid fa-sun icon-sun" aria-hidden="true"></i>
+                    <i class="fa-solid fa-moon icon-moon" aria-hidden="true"></i>
+                </button>
+                <a href="https://github.com/IzukiNo" target="_blank" rel="noopener" class="nav-cta">GitHub</a>
+            </div>
         </div>
-        <nav>
-            <a href="/">Home</a>
-            <a href="/project" class="active">Project</a>
-        </nav>
     </header>
 
-    <section class="home-project">
-        <div class="title1">
-            <h1>Coding</h1>
-        </div>
-        <div class="project-list">
-            <!-- Projects will be dynamically loaded from data.json -->
-        </div>
+    <main>
+        <section class="section" id="code" style="padding-top: calc(var(--space-9) + 64px);">
+            <div class="container">
+                <div class="section-header reveal">
+                    <p class="section-label">Work</p>
+                    <h2 class="section-title">Coding</h2>
+                    <p class="section-desc">Systems, tools, and web applications built with intention.</p>
+                </div>
 
-        <div class="title1">
-            <h1>Editing</h1>
-        </div>
-        <div class="video-list">
-            <!-- Videos will be dynamically loaded from data.json -->
-        </div>
-    </section>
-    <div id="particle-background"></div>
+                <div class="project-list">
 
-    <script src="Particles.js"></script>
-    <script src="project.js"></script>
+                    <div class="project-card">
+                        <div class="project-img-wrapper">
+                            <img src="https://cdn.jsdelivr.net/gh/IzukiNo/cdn/portfolio/project/V_trans.png"
+                                alt="VNList - Minecraft Tierlist" class="project-image"
+                                style="width:50%;object-fit:contain;" loading="lazy" />
+                        </div>
+                        <div class="project-content">
+                            <div class="project-title">VNList — Minecraft PvP Tierlist</div>
+                            <div class="project-desc">A full-stack system featuring a Website, Backend, and Discord Bot
+                                designed to rank Minecraft PvP players in Vietnam.</div>
+                            <div class="project-links">
+                                <a href="https://vnlist.asia/" target="_blank" rel="noopener" class="project-link"
+                                    aria-label="View VNList Project">View Project</a>
+                                <a href="https://vnlist.asia/" target="_blank" rel="noopener" class="project-repo"
+                                    aria-label="VNList Repository">
+                                    <i class="fa-brands fa-github" aria-hidden="true"></i> Repository
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-img-wrapper">
+                            <img src="https://cdn.jsdelivr.net/gh/IzukiNo/cdn/portfolio/project/favicon.png"
+                                alt="Home To School - Graph Visualization" class="project-image"
+                                style="width:55%;object-fit:contain;" loading="lazy" />
+                        </div>
+                        <div class="project-content">
+                            <div class="project-title">Home To School — Graph Visualization</div>
+                            <div class="project-desc">Educational graph visualization tool for learning shortest path
+                                algorithms. Mobile-ready, featuring Dijkstra, BFS & DFS implementations.</div>
+                            <div class="project-links">
+                                <a href="https://izukino.github.io/Home_To_School/" target="_blank" rel="noopener"
+                                    class="project-link" aria-label="View Home To School Project">View Project</a>
+                                <a href="https://github.com/IzukiNo/Home_To_School" target="_blank" rel="noopener"
+                                    class="project-repo" aria-label="Home To School Repository">
+                                    <i class="fa-brands fa-github" aria-hidden="true"></i> Repository
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-img-wrapper">
+                            <img src="https://cdn.jsdelivr.net/gh/IzukiNo/cdn/portfolio/project/grouptab2.png"
+                                alt="Group Tab Opener Chrome Extension" class="project-image"
+                                style="width:50%;object-fit:contain;" loading="lazy" />
+                        </div>
+                        <div class="project-content">
+                            <div class="project-title">Group Tab Opener</div>
+                            <div class="project-desc">A Chrome extension to organize and open custom tab groups with
+                                one click. Built for developer productivity.</div>
+                            <div class="project-links">
+                                <a href="https://github.com/IzukiNo/Group-Tab-Opener/releases/tag/Production"
+                                    target="_blank" rel="noopener" class="project-link"
+                                    aria-label="View Group Tab Opener">View Project</a>
+                                <a href="https://github.com/IzukiNo/Group-Tab-Opener" target="_blank" rel="noopener"
+                                    class="project-repo" aria-label="Group Tab Opener Repository">
+                                    <i class="fa-brands fa-github" aria-hidden="true"></i> Repository
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-img-wrapper">
+                            <img src="https://cdn.jsdelivr.net/gh/IzukiNo/cdn/portfolio/project/countdown.png"
+                                alt="New Year Countdown" class="project-image"
+                                style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+                        </div>
+                        <div class="project-content">
+                            <div class="project-title">New Year Countdown</div>
+                            <div class="project-desc">A countdown timer to the New Year displaying days, hours,
+                                minutes, and seconds — built with HTML, CSS, and JavaScript.</div>
+                            <div class="project-links">
+                                <a href="https://izukino.github.io/Countdown/" target="_blank" rel="noopener"
+                                    class="project-link" aria-label="View Countdown Project">View Project</a>
+                                <a href="https://github.com/IzukiNo/countdown" target="_blank" rel="noopener"
+                                    class="project-repo" aria-label="Countdown Repository">
+                                    <i class="fa-brands fa-github" aria-hidden="true"></i> Repository
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-img-wrapper">
+                            <img src="https://cdn.jsdelivr.net/gh/IzukiNo/cdn/portfolio/project/xogame.png"
+                                alt="XO Tic-Tac-Toe Game" class="project-image" loading="lazy" />
+                        </div>
+                        <div class="project-content">
+                            <div class="project-title">XO Game</div>
+                            <div class="project-desc">A tic-tac-toe game with score tracking built with HTML, CSS, and
+                                JavaScript. Players alternate placing Xs and Os.</div>
+                            <div class="project-links">
+                                <a href="https://izukino.github.io/XO/" target="_blank" rel="noopener"
+                                    class="project-link" aria-label="View XO Game Project">View Project</a>
+                                <a href="https://github.com/IzukiNo/XO" target="_blank" rel="noopener"
+                                    class="project-repo" aria-label="XO Game Repository">
+                                    <i class="fa-brands fa-github" aria-hidden="true"></i> Repository
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <section class="section" id="edit">
+            <div class="container">
+                <div class="section-header reveal">
+                    <p class="section-label">Creative</p>
+                    <h2 class="section-title">Editing</h2>
+                    <p class="section-desc">Minecraft montages and video production work.</p>
+                </div>
+
+                <div class="video-list">
+
+                    <div class="video-card">
+                        <div class="video-thumbnail-wrapper">
+                            <img src="https://img.youtube.com/vi/d6KPat8Aa48/maxresdefault.jpg"
+                                alt="Alien - The cleanest minecraft edit" class="video-thumbnail" loading="lazy" />
+                        </div>
+                        <div class="video-content">
+                            <a href="https://youtu.be/d6KPat8Aa48" target="_blank" rel="noopener"
+                                class="video-title">Alien — The cleanest minecraft edit</a>
+                            <p class="video-desc">Edited by IzukiNo · Song: LRP Dyl - Alien (feat. Ughlie)</p>
+                            <a href="https://youtu.be/d6KPat8Aa48" target="_blank" rel="noopener" class="video-link"
+                                aria-label="Watch Alien Edit">Watch Video</a>
+                        </div>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-thumbnail-wrapper">
+                            <img src="https://img.youtube.com/vi/txa_2Pjwybk/maxresdefault.jpg"
+                                alt="VNList Minecraft PvP Tierlist Trailer" class="video-thumbnail" loading="lazy" />
+                        </div>
+                        <div class="video-content">
+                            <a href="https://youtu.be/txa_2Pjwybk" target="_blank" rel="noopener"
+                                class="video-title">VNList — Minecraft 1.21+ PvP Tierlist [Trailer]</a>
+                            <p class="video-desc">VNList là hệ thống xếp hạng PvP Minecraft 1.21+ tại Việt Nam.</p>
+                            <a href="https://youtu.be/txa_2Pjwybk" target="_blank" rel="noopener" class="video-link"
+                                aria-label="Watch VNList Trailer">Watch Video</a>
+                        </div>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-thumbnail-wrapper">
+                            <img src="https://img.youtube.com/vi/Q_aNHaiERnc/maxresdefault.jpg"
+                                alt="IzukiNo x CryptidesX - The Minecraft Duotage" class="video-thumbnail"
+                                loading="lazy" />
+                        </div>
+                        <div class="video-content">
+                            <a href="https://youtu.be/Q_aNHaiERnc" target="_blank" rel="noopener"
+                                class="video-title">IzukiNo × CryptidesX — The Minecraft Duotage</a>
+                            <p class="video-desc">Montage by IzukiNo & CryptidesX · Song: Rarin - GTA</p>
+                            <a href="https://youtu.be/Q_aNHaiERnc" target="_blank" rel="noopener" class="video-link"
+                                aria-label="Watch Duotage">Watch Video</a>
+                        </div>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-thumbnail-wrapper">
+                            <img src="https://img.youtube.com/vi/DeRVZ3TOtY8/maxresdefault.jpg"
+                                alt="The greatest Vietnamese ever - Ranked Bedwars Montage" class="video-thumbnail"
+                                loading="lazy" />
+                        </div>
+                        <div class="video-content">
+                            <a href="https://youtu.be/DeRVZ3TOtY8" target="_blank" rel="noopener"
+                                class="video-title">the greatest Vietnamese ever… (Ranked Bedwars Montage)</a>
+                            <p class="video-desc">Edited by IzukiNo — chill clips only.</p>
+                            <a href="https://youtu.be/DeRVZ3TOtY8" target="_blank" rel="noopener" class="video-link"
+                                aria-label="Watch Vietnamese Montage">Watch Video</a>
+                        </div>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-thumbnail-wrapper">
+                            <img src="https://img.youtube.com/vi/45TRB1mOTTo/maxresdefault.jpg"
+                                alt="Ranked Bedwars Season IV Trailer VNRBW" class="video-thumbnail" loading="lazy" />
+                        </div>
+                        <div class="video-content">
+                            <a href="https://youtu.be/45TRB1mOTTo" target="_blank" rel="noopener"
+                                class="video-title">Ranked Bedwars Season IV Trailer — VNRBW</a>
+                            <p class="video-desc">Official trailer · Server: luckyvn.com</p>
+                            <a href="https://youtu.be/45TRB1mOTTo" target="_blank" rel="noopener" class="video-link"
+                                aria-label="Watch Ranked Bedwars Trailer">Watch Video</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
     <footer>
-        <div id="copyright">
-            &copy; 2025 IzukiNo - All Rights Reserved.
+        <div class="footer-inner">
+            <div id="copyright"></div>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="https://github.com/IzukiNo" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://www.youtube.com/@izukinoo" target="_blank" rel="noopener">YouTube</a>
+            </div>
         </div>
     </footer>
+
+    <div id="particle-background"></div>
+
+    <script defer src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script defer src="./js/main.js"></script>
+    <script defer src="./js/project.js"></script>
+    <script type="module" src="./js/animations.js"></script>
 </body>
 
 </html>
