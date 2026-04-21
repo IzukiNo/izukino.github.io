@@ -1,4 +1,4 @@
-import { animate, inView, hover, stagger } from 'https://cdn.jsdelivr.net/npm/motion@latest/+esm';
+import { animate, inView, hover } from 'https://cdn.jsdelivr.net/npm/motion@latest/+esm';
 
 const EASE_OUT = [0.22, 1, 0.36, 1];
 const DUR_MED = 0.2;
@@ -156,8 +156,6 @@ function initPageTransitions() {
     const bg = document.getElementById('particle-background');
 
     if (!pageWrapper) return;
-
-    // ===== INITIAL STATE =====
     if (bg) {
         animate(bg, {
             opacity: 0,
@@ -165,13 +163,12 @@ function initPageTransitions() {
         }, { duration: 0 });
     }
 
-    // ===== ENTER =====
     requestAnimationFrame(() => {
         pageWrapper.classList.add('fade-in');
 
         if (bg) {
             animate(bg, {
-                opacity: 1,
+                opacity: 0.5,
                 scale: 1
             }, {
                 duration: 1.6,
@@ -181,7 +178,6 @@ function initPageTransitions() {
         }
     });
 
-    // ===== EXIT =====
     document.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', (e) => {
             const href = link.getAttribute('href');
@@ -254,7 +250,7 @@ function initIndexReveal() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+export function initAnimations() {
     initScrollReveal();
     initCardHover();
     initButtonHover();
@@ -263,4 +259,4 @@ document.addEventListener('DOMContentLoaded', () => {
     initToggleAnimation();
     initPageTransitions();
     initIndexReveal();
-});
+}

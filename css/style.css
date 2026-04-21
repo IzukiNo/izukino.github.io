@@ -226,7 +226,6 @@ header {
     border: none;
 }
 
-/* The floating pill island */
 .nav-island {
     max-width: var(--island-max-width);
     margin-inline: auto;
@@ -239,13 +238,11 @@ header {
     background: rgba(109, 109, 109, 0.08);
     border: 1px solid rgba(94, 94, 94, 0.12);
     border-radius: var(--radius-pill);
-    backdrop-filter: blur(20px) saturate(160%);
     -webkit-backdrop-filter: blur(20px) saturate(160%);
+    backdrop-filter: blur(20px) saturate(160%);
     box-shadow: var(--shadow-island);
     pointer-events: auto;
-    /* Island transitions */
-    transition:
-        transform var(--dur-slow) var(--ease-out),
+    transition: transform var(--dur-slow) var(--ease-out),
         padding var(--dur-slow) var(--ease-standard),
         box-shadow var(--dur-med) var(--ease-out),
         background var(--dur-med) var(--ease-standard),

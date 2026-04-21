@@ -1,3 +1,5 @@
+import { initAnimations } from "./animations.js";
+
 const THEME_KEY = 'izukino-theme';
 const DEFAULT_THEME = 'dark';
 
@@ -6,7 +8,7 @@ function getParticleColor() {
     return theme === 'dark' ? '#ffffff' : '#000000';
 }
 
-function initParticles() {
+export function initParticles() {
     if (typeof particlesJS === 'undefined') return;
     const container = document.getElementById('particle-background');
     if (!container) return;
@@ -41,8 +43,7 @@ function initParticles() {
             },
             move: {
                 enable: true, speed: 3, direction: 'none',
-                random: false, straight: false, out_mode: 'out', bounce: false,
-                attract: { enable: false, rotateX: 600, rotateY: 1200 }
+                out_mode: 'out'
             }
         },
         interactivity: {
@@ -54,10 +55,7 @@ function initParticles() {
             },
             modes: {
                 grab: { distance: 150, line_linked: { opacity: 1.5 } },
-                bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 },
-                repulse: { distance: 200, duration: 0.4 },
-                push: { particles_nb: 4 },
-                remove: { particles_nb: 2 }
+                push: { particles_nb: 4 }
             }
         },
         retina_detect: true
@@ -67,9 +65,7 @@ function initParticles() {
 function applyTheme(theme, animate) {
     const body = document.body;
 
-    if (!animate) {
-        body.classList.add('no-transition');
-    }
+    if (!animate) body.classList.add('no-transition');
 
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem(THEME_KEY, theme);
@@ -107,7 +103,7 @@ function initTheme() {
 function updateCopyright() {
     const el = document.getElementById('copyright');
     if (el) {
-        el.textContent = `\u00a9 ${new Date().getFullYear()} IzukiNo \u2014 All Rights Reserved.`;
+        el.textContent = `\u00a9 ${new Date().getFullYear()} IzukiNo — All Rights Reserved.`;
     }
 }
 
@@ -130,20 +126,21 @@ function initIslandScroll() {
     onScroll();
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+export function initApp() {
     initTheme();
     updateCopyright();
     initIslandScroll();
     initParticles();
+    initAnimations();
 
     requestAnimationFrame(() => {
         document.body.classList.add('loaded');
     });
-});
 
-window.addEventListener('load', () => {
-    if (typeof particlesJS !== 'undefined' &&
-        (!window.pJSDom || window.pJSDom.length === 0)) {
-        initParticles();
-    }
-});
+    window.addEventListener('load', () => {
+        if (typeof particlesJS !== 'undefined' &&
+            (!window.pJSDom || window.pJSDom.length === 0)) {
+            initParticles();
+        }
+    });
+}
