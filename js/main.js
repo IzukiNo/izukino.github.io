@@ -1,11 +1,5 @@
-// ============================================================
-// MAIN.JS — Shared logic, all pages
-// ============================================================
-
 const THEME_KEY = 'izukino-theme';
 const DEFAULT_THEME = 'dark';
-
-// ── 1. Particles ─────────────────────────────────────────────
 
 function getParticleColor() {
     const theme = document.documentElement.getAttribute('data-theme') || DEFAULT_THEME;
@@ -13,14 +7,12 @@ function getParticleColor() {
 }
 
 function initParticles() {
-    // Only run if the library and container are present
     if (typeof particlesJS === 'undefined') return;
     const container = document.getElementById('particle-background');
     if (!container) return;
 
     const color = getParticleColor();
 
-    // Destroy previous instance if it exists
     if (window.pJSDom && window.pJSDom.length > 0) {
         window.pJSDom[0].pJS.fn.vendors.destroypJS();
         window.pJSDom = [];
@@ -72,8 +64,6 @@ function initParticles() {
     });
 }
 
-// ── 2. Theme System ──────────────────────────────────────────
-
 function applyTheme(theme, animate) {
     const body = document.body;
 
@@ -84,7 +74,6 @@ function applyTheme(theme, animate) {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem(THEME_KEY, theme);
 
-    // Sync toggle button aria-label
     const btn = document.querySelector('.theme-toggle');
     if (btn) {
         btn.setAttribute('aria-label',
@@ -92,8 +81,6 @@ function applyTheme(theme, animate) {
         );
     }
 
-    // Re-init particles with correct color
-    // Defer slightly so CSS variables have already updated
     setTimeout(initParticles, 50);
 
     if (!animate) {
@@ -117,16 +104,12 @@ function initTheme() {
     if (btn) btn.addEventListener('click', toggleTheme);
 }
 
-// ── 3. Copyright year ────────────────────────────────────────
-
 function updateCopyright() {
     const el = document.getElementById('copyright');
     if (el) {
         el.textContent = `\u00a9 ${new Date().getFullYear()} IzukiNo \u2014 All Rights Reserved.`;
     }
 }
-
-// ── 4. Dynamic island scroll behavior ───────────────────────
 
 function initIslandScroll() {
     const header = document.querySelector('header');
@@ -147,24 +130,17 @@ function initIslandScroll() {
     onScroll();
 }
 
-// ── 5. Card stagger reveal — handled by Motion in animations.js ─
-
-// ── Init ─────────────────────────────────────────────────────
-
 document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     updateCopyright();
     initIslandScroll();
-    // Particle init is triggered inside initTheme -> applyTheme
     initParticles();
 
-    // Trigger page load reveal
     requestAnimationFrame(() => {
         document.body.classList.add('loaded');
     });
 });
 
-// Safety net: init particles after window load if defer was slow
 window.addEventListener('load', () => {
     if (typeof particlesJS !== 'undefined' &&
         (!window.pJSDom || window.pJSDom.length === 0)) {

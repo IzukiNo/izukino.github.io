@@ -1111,10 +1111,7 @@ body.loaded .reveal {
     }
 }
 
-/* ============================================================
-   REDUCED MOTION
-   ============================================================ */
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
 
     *,
     *::before,
@@ -1123,6 +1120,4 @@ body.loaded .reveal {
         transition-duration: 0.01ms !important;
         transition-delay: 0ms !important;
     }
-
-    /* Motion library respects this automatically via its own check */
-}
+} */
