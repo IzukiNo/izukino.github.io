@@ -6,29 +6,63 @@ const DUR_SLOW = 0.3;
 
 function initScrollReveal() {
     document.querySelectorAll('.section-header').forEach(el => {
-        animate(el, { opacity: 0, y: 24 }, { duration: 0 });
+        animate(el, {
+            opacity: 0,
+            y: 32,
+            scale: 0.96,
+            filter: "blur(2px)"
+        }, { duration: 0 });
 
-        inView(el, () => {
-            animate(el, { opacity: 1, y: 0 }, {
-                duration: DUR_SLOW,
-                easing: EASE_OUT
+        const run = () => {
+            animate(el, {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                filter: "blur(0px)"
+            }, {
+                duration: 0.7,
+                easing: [0.16, 1, 0.3, 1]
             });
-        }, { amount: 0.2 });
+        };
+
+        const isAboveFold = el.getBoundingClientRect().top < window.innerHeight;
+        isAboveFold ? requestAnimationFrame(run) : inView(el, run, { amount: 0.2 });
     });
+
 
     document.querySelectorAll('.project-list, .video-list').forEach(list => {
         const cards = list.querySelectorAll('.project-card, .video-card');
         if (!cards.length) return;
 
-        animate(cards, { opacity: 0, y: 28 }, { duration: 0 });
+        cards.forEach((card, i) => {
+            const driftX = (Math.random() - 0.5) * 12;
+            const delay = i * 0.1;
 
-        inView(list, () => {
-            animate(cards, { opacity: 1, y: 0 }, {
-                duration: DUR_SLOW,
-                easing: EASE_OUT,
-                delay: stagger(0.08)
-            });
-        }, { amount: 0.05 });
+            animate(card, {
+                opacity: 0,
+                y: 40,
+                x: driftX,
+                scale: 0.95,
+                filter: "blur(2px)"
+            }, { duration: 0 });
+
+            const run = () => {
+                animate(card, {
+                    opacity: 1,
+                    y: 0,
+                    x: 0,
+                    scale: 1,
+                    filter: "blur(0px)"
+                }, {
+                    duration: 0.75,
+                    easing: [0.16, 1, 0.3, 1],
+                    delay
+                });
+            };
+
+            const isAboveFold = card.getBoundingClientRect().top < window.innerHeight;
+            isAboveFold ? requestAnimationFrame(run) : inView(card, run, { amount: 0.15 });
+        });
     });
 }
 
@@ -119,12 +153,35 @@ function initToggleAnimation() {
 
 function initPageTransitions() {
     const pageWrapper = document.querySelector('.page-transition');
+    const bg = document.getElementById('particle-background');
+
     if (!pageWrapper) return;
 
+    // ===== INITIAL STATE =====
+    if (bg) {
+        animate(bg, {
+            opacity: 0,
+            scale: 1.05
+        }, { duration: 0 });
+    }
+
+    // ===== ENTER =====
     requestAnimationFrame(() => {
         pageWrapper.classList.add('fade-in');
+
+        if (bg) {
+            animate(bg, {
+                opacity: 1,
+                scale: 1
+            }, {
+                duration: 1.6,
+                easing: [0.22, 1, 0.36, 1],
+                delay: 0.15
+            });
+        }
     });
 
+    // ===== EXIT =====
     document.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', (e) => {
             const href = link.getAttribute('href');
@@ -135,13 +192,65 @@ function initPageTransitions() {
             if (e.ctrlKey || e.metaKey || e.shiftKey) return;
 
             e.preventDefault();
+
             pageWrapper.classList.remove('fade-in');
             pageWrapper.classList.add('fade-out');
 
+            if (bg) {
+                animate(bg, {
+                    opacity: 0,
+                    scale: 1.05
+                }, {
+                    duration: 0.5,
+                    easing: [0.4, 0, 0.2, 1]
+                });
+            }
+
             setTimeout(() => {
                 window.location.href = href;
-            }, 300);
+            }, 400);
         });
+    });
+}
+
+function initIndexReveal() {
+    const elements = document.querySelectorAll('.reveal');
+    if (!elements.length) return;
+
+    elements.forEach((el, i) => {
+        const driftX = (Math.random() - 0.5) * 16;
+        const delay = i * 0.06;
+
+        animate(el, {
+            opacity: 0,
+            y: 40,
+            x: driftX,
+            scale: 0.94,
+            filter: "blur(6px)"
+        }, { duration: 0 });
+
+        const run = () => {
+            animate(el, {
+                opacity: 1,
+                y: 0,
+                x: 0,
+                scale: 1,
+                filter: "blur(0px)"
+            }, {
+                duration: 0.6,
+                easing: EASE_OUT,
+                delay
+            });
+        };
+
+
+        const isAboveFold = el.getBoundingClientRect().top < window.innerHeight;
+
+        if (isAboveFold) {
+            requestAnimationFrame(run);
+        } else {
+            inView(el, run, { amount: 0.2 });
+        }
     });
 }
 
@@ -153,4 +262,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initSocialHover();
     initToggleAnimation();
     initPageTransitions();
+    initIndexReveal();
 });
